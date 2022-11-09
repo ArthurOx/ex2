@@ -8,11 +8,32 @@
 // hint: use this reference later to inject data into your page
 const app = document.getElementById('app');
 
-async function getData() {
-  // write you logic for getting the data from the API here
-  // return your data from this function
-  const data = null;
-  return data;
+const jerusalemButton = document.querySelector("#jerusalemWeather");
+const jerusalemTextDisplay = document.querySelector("#jerusalemWeatherText");
+const jerusalemLat = 30;
+const jerusalemLong = 30;
+const weatherUrl = 'https://api.open-meteo.com';
+const weatherForecast = `${weatherUrl}/v1/forecast`
+
+async function getData(lat, long) {
+  const jsonBody = JSON.stringify(
+    {
+      body: {
+        latitude: lat,
+        longtitude: long,
+        current_weather: true
+      }
+    }
+  )
+  const data = await fetch(weatherForecast, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: jsonBody
+  });
+  response = await data.json();
+  return response;
 }
 
 function clearUI() {
@@ -34,6 +55,7 @@ async function renderUI(data) {
   app.appendChild(dummyItemElement);
 }
 
-const data = await getData();
-
-await renderUI(data);
+jerusalemButton.addEventListener("click", async () => {
+  const currentWeather = await getData(jerusalemLat, jerusalemLong);
+  jerusalemTextDisplay.textContent = currentWeather;
+});
