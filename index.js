@@ -10,52 +10,46 @@ const app = document.getElementById('app');
 
 const jerusalemButton = document.querySelector("#jerusalemWeather");
 const jerusalemTextDisplay = document.querySelector("#jerusalemWeatherText");
-const jerusalemLat = 30;
-const jerusalemLong = 30;
+const jerusalemLat = 31.7683;
+const jerusalemLong = 35.2137;
 const weatherUrl = 'https://api.open-meteo.com';
 const weatherForecast = `${weatherUrl}/v1/forecast`
 
 async function getData(lat, long) {
-  const jsonBody = JSON.stringify(
-    {
-      body: {
-        latitude: lat,
-        longtitude: long,
-        current_weather: true
-      }
-    }
-  )
-  const data = await fetch(weatherForecast, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: jsonBody
-  });
-  response = await data.json();
-  return response;
+    const jsonBody = JSON.stringify(
+        {
+            body: {
+                latitude: lat,
+                longtitude: long,
+                current_weather: true
+            }
+        }
+    )
+    const data = await fetch(`${weatherForecast}?latitude=${jerusalemLat}&longitude=${jerusalemLong}&current_weather=true`);
+    const response = await data.json();
+    return response;
 }
 
 function clearUI() {
-  while (app.firstChild) {
-    app.removeChild(app.firstChild);
-  }
+    while (app.firstChild) {
+        app.removeChild(app.firstChild);
+    }
 }
 
 async function renderUI(data) {
 
-  clearUI();
+    clearUI();
 
-  // you have your data! add logic here to render it to the UI
-  // notice in the HTML file we call render();
-  const dummyItemElement = Object.assign(document.createElement("div"), { className: "item" })
-  const dummyContentElement = Object.assign(document.createElement("div"), { className: "content" })
-  dummyContentElement.innerHTML = "hey";
-  dummyItemElement.appendChild(dummyContentElement);
-  app.appendChild(dummyItemElement);
+    // you have your data! add logic here to render it to the UI
+    // notice in the HTML file we call render();
+    const dummyItemElement = Object.assign(document.createElement("div"), { className: "item" })
+    const dummyContentElement = Object.assign(document.createElement("div"), { className: "content" })
+    dummyContentElement.innerHTML = "hey";
+    dummyItemElement.appendChild(dummyContentElement);
+    app.appendChild(dummyItemElement);
 }
 
 jerusalemButton.addEventListener("click", async () => {
-  const currentWeather = await getData(jerusalemLat, jerusalemLong);
-  jerusalemTextDisplay.textContent = currentWeather;
+    const response = await getData(jerusalemLat, jerusalemLong);
+    jerusalemTextDisplay.textContent = response.current_weather.temperature;
 });
