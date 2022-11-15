@@ -16,9 +16,8 @@
   box-sizing: border-box;
   flex-grow: 0;
   flex-basis: 100%;
-
-  /* design helper */
-  border: 1px dotted orangered;
+  border: 1px solid orangered;
+  align-content: center;
 }
 
 .content {
@@ -28,9 +27,6 @@
   box-sizing: border-box;
   margin: 5px;
   padding: 10px;
-
-  /* design helper */
-  border: 1px dotted blueviolet;
 }
 
 .item.meta {
@@ -79,5 +75,5 @@ body {
 
 .data-record {
   /* visual helper */
-  border: 1px solid blueviolet;
+  border: 3px solid blueviolet;
 }
