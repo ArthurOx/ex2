@@ -28,6 +28,7 @@ p {
   border-radius: 15px;
   margin-block-end: 5px;
   align-content: center;
+  background-color: rgb(187, 223, 187);
 }
 
 .content {
@@ -59,9 +60,6 @@ p {
 
 #sort-filter {
     width: 100%;
-    border-width:5px;
-    border: 1px solid;
-    border-radius: 1%;
 }
 
 /* adjustments for medium screens, like some tablets or landscape on a mobile */
