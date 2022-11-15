@@ -9,39 +9,62 @@
 <body>
     <div id="container">
         <div id="main">
-            <h1 class="content">Weather in random locations</h1>
-            <div id="userInput">
-                <button id="jerusalemWeather">Jerusalem</button>
+            <h1 class="content">Weather in the World</h1>
+
+            <div class="sort">
+                <p>Show cities</p>
+                <select id="sortByTemp">
+                    <option value="hot-to-cold">Warmest to Coolest</option>
+                    <option value="cold-to-hot">Coolest to Warmest</option>
+                </select>
             </div>
 
-            <div id="app" class="row">
-
-
-                <!-- Start example showing the css layout -->
-                <div class="item">
-                    <div class="content">
-                        <h1 id="jerusalemWeatherText"></h1>
-                        <p>Example text.</p>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="content">
-                        <h2>Example Heading</h2>
-                        <p>Example text.</p>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="content">
-                        <h2>Example Heading</h2>
-                        <p>Example text.</p>
-                    </div>
-                </div>
-                <!-- End example showing the css layout -->
-
+            <div class="filter">
+                <p>Filter cities</p>
+                <input type="checkbox" id="America" name="America" value="America" checked>
+                <label for="America"> America</label><br>
+                <input type="checkbox" id="Europe" name="Europe" value="Europe" checked>
+                <label for="Europe"> Europe</label><br>
+                <input type="checkbox" id="Asia" name="Asia" value="Asia" checked>
+                <label for="Asia"> Asia</label><br>
+                <input type="checkbox" id="Africa" name="Africa" value="Africa" checked>
+                <label for="Africa"> Africa</label><br>
             </div>
+
+            <div id="app" class="row"></div>
+
+            <template id="weather-card">
+                <div class="item">
+                    <h3 class="city"></h3>
+                    <p class="emoji"></p>
+                    <h1 class="temperature"></h1>
+                </div>
+            </template>
+            <!-- Start example showing the css layout -->
+            <div class="item">
+                <div class="content">
+                    <h2>Example Heading</h2>
+                    <p>Example text.</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="content">
+                    <h2>Example Heading</h2>
+                    <p>Example text.</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="content">
+                    <h2>Example Heading</h2>
+                    <p>Example text.</p>
+                </div>
+            </div>
+            <!-- End example showing the css layout -->
+
         </div>
+    </div>
     </div>
     <script type="module" src="index.js"></script>
 </body>

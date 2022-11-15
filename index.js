@@ -8,26 +8,38 @@
 // hint: use this reference later to inject data into your page
 const app = document.getElementById('app');
 
-const jerusalemButton = document.querySelector("#jerusalemWeather");
-const jerusalemTextDisplay = document.querySelector("#jerusalemWeatherText");
-const jerusalemLat = 31.7683;
-const jerusalemLong = 35.2137;
+const cityCoords = [
+    {
+        name: "Jerusalem",
+        lat: 31.7683,
+        long: 35.2137,
+        continent: "Asia"
+    },
+    {
+        name: "Berlin",
+        lat: 52.52,
+        long: 13.41,
+        continent: "Europe"
+    },
+    {
+        name: "New York",
+        lat: 40.71,
+        long: -74.01,
+        continent: "America"
+    }
+]
 const weatherUrl = 'https://api.open-meteo.com';
 const weatherForecast = `${weatherUrl}/v1/forecast`
 
-async function getData(lat, long) {
-    const jsonBody = JSON.stringify(
-        {
-            body: {
-                latitude: lat,
-                longtitude: long,
-                current_weather: true
-            }
-        }
-    )
-    const data = await fetch(`${weatherForecast}?latitude=${jerusalemLat}&longitude=${jerusalemLong}&current_weather=true`);
-    const response = await data.json();
-    return response;
+async function getData() {
+    const cityCoordsWithWeather = [];
+    for (const city of cityCoords) {
+        const data = await fetch(`${weatherForecast}?latitude=${city.lat}&longitude=${city.long}&current_weather=true`);
+        const response = await data.json();
+        const cityWithWeather = Object.assign(city, { temperature: response.current_weather.temperature });
+        cityCoordsWithWeather.push(cityWithWeather)
+    }
+    return cityCoordsWithWeather;
 }
 
 function clearUI() {
@@ -39,17 +51,29 @@ function clearUI() {
 async function renderUI(data) {
 
     clearUI();
-
-    // you have your data! add logic here to render it to the UI
-    // notice in the HTML file we call render();
-    const dummyItemElement = Object.assign(document.createElement("div"), { className: "item" })
-    const dummyContentElement = Object.assign(document.createElement("div"), { className: "content" })
-    dummyContentElement.innerHTML = "hey";
-    dummyItemElement.appendChild(dummyContentElement);
-    app.appendChild(dummyItemElement);
+    for (const city of data) {
+        const weatherTemplate = document.querySelector("#weather-card").content.firstElementChild.cloneNode(true);
+        const cityHeader = weatherTemplate.querySelector("h3");
+        const emoji = weatherTemplate.querySelector("p");
+        const temperature = weatherTemplate.querySelector("h1");
+        cityHeader.innerHTML = city.name;
+        emoji.innerHTML = getEmoji(city.temperature);
+        temperature.innerHTML = `${city.temperature}ºC`;
+        app.appendChild(weatherTemplate);
+    }
 }
 
-jerusalemButton.addEventListener("click", async () => {
-    const response = await getData(jerusalemLat, jerusalemLong);
-    jerusalemTextDisplay.textContent = response.current_weather.temperature;
-});
+function getEmoji(temperature) {
+    if (temperature > 25) {
+        return "☀";
+    } else if (temperature > 6) {
+        return "☁";
+    } else {
+        return "❄";
+    }
+}
+
+const data = await getData();
+
+
+await renderUI(data);
