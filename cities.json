@@ -1,0 +1,92 @@
+[
+    {
+        "name": "Jerusalem",
+        "lat": 31.7683,
+        "long": 35.2137,
+        "continent": "Asia"
+    },
+    {
+        "name": "Berlin",
+        "lat": 52.52,
+        "long": 13.41,
+        "continent": "Europe"
+    },
+    {
+        "name": "New York",
+        "lat": 40.71,
+        "long": -74.01,
+        "continent": "America"
+    },
+    {
+        "name": "Nairobi",
+        "lat": -1.2762,
+        "long": 36.7965,
+        "continent": "Africa"
+    },
+    {
+        "name": "Reykjavik",
+        "lat": 64.1353,
+        "long": -21.8952,
+        "continent": "Europe"
+    },
+    {
+        "name": "Algiers",
+        "lat": 36.7755,
+        "long": 3.0597,
+        "continent": "Africa"
+    },
+    {
+        "name": "Baghdad",
+        "lat": 33.3157,
+        "long": 44.3922,
+        "continent": "Asia"
+    },
+    {
+        "name": "Montevideo",
+        "lat": -34.8941,
+        "long": -56.0675,
+        "continent": "America"
+    },
+    {
+        "name": "Jakarta",
+        "lat": -6.1862,
+        "long": 106.8063,
+        "continent": "Asia"
+    },
+    {
+        "name": "Ottawa",
+        "lat": 45.4235,
+        "long": -75.6979,
+        "continent": "America"
+    },
+    {
+        "name": "Kathmandu",
+        "lat": 27.7058,
+        "long": 85.3157,
+        "continent": "Asia"
+    },
+    {
+        "name": "Moscow",
+        "lat": 55.7558,
+        "long": 37.6176,
+        "continent": "America"
+    },
+    {
+        "name": "Paris",
+        "lat": 48.8567,
+        "long": 2.3510,
+        "continent": "Europe"
+    },
+    {
+        "name": "Mexico City",
+        "lat": 19.4271,
+        "long": -99.1276,
+        "continent": "America"
+    },
+    {
+        "name": "Kabul",
+        "lat": 34.5155,
+        "long": 69.1952,
+        "continent": "Asia"
+    }
+]
